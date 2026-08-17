@@ -8,7 +8,7 @@
 
 ## المتطلبات (Prerequisites)
 
-قبل ما تشغّلي المشروع، لازم يكون عندك مثبّت:
+قبل ما تشغّل المشروع، لازم يكون عندك مثبّت:
 
 - [.NET 10 SDK](https://dotnet.microsoft.com/download)
 - [Node.js](https://nodejs.org/) (نسخة 18 أو أحدث) و npm
@@ -33,9 +33,9 @@ TrackManagement/
 
 ## 1. تشغيل الـ Backend (.NET API)
 
-### أ) اضبطي الـ Connection String
+### أ) اضبط الـ Connection String
 
-افتحي `TrackManagement.API/appsettings.json` وتأكدي إن الـ `ConnectionStrings:DefaultConnection` بيشاور على السيرفر بتاعك:
+افتح `TrackManagement.API/appsettings.json` وتأكد إن الـ `ConnectionStrings:DefaultConnection` بيشاور على السيرفر بتاعك:
 
 ```json
 "ConnectionStrings": {
@@ -43,9 +43,9 @@ TrackManagement/
 }
 ```
 
-> غيّري `YOUR_SERVER_NAME` باسم السيرفر المحلي بتاعك (تلاقيه في SSMS، أو جرّبي `.\SQLEXPRESS` أو `(localdb)\MSSQLLocalDB`).
+> غيّر `YOUR_SERVER_NAME` باسم السيرفر المحلي بتاعك (تلاقيه في SSMS، أو جرّب `.\SQLEXPRESS` أو `(localdb)\MSSQLLocalDB`).
 
-### ب) شغّلي الـ Migrations
+### ب) شغّل الـ Migrations
 
 من داخل مجلد `TrackManagement.API`:
 
@@ -59,20 +59,20 @@ dotnet ef database update --project ..\TrackManagement.Infrastructure
 - 8 أغاني (Tracks) بأنواع وحالات مختلفة
 - 3 منصات (DSPs): Spotify, Apple Music, YouTube Music
 
-> لو عايزة تعملي migration جديدة بعد أي تعديل على الـ Entities:
+> لو عايزة تعمل migration جديدة بعد أي تعديل على الـ Entities:
 >
 > ```bash
 > dotnet ef migrations add <MigrationName> --project ..\TrackManagement.Infrastructure
 > dotnet ef database update --project ..\TrackManagement.Infrastructure
 > ```
 
-### ج) شغّلي الـ API
+### ج) شغّل الـ API
 
 ```bash
 dotnet run
 ```
 
-هيشتغل على: `http://localhost:5110` (تأكدي من الرقم الفعلي في رسالة `Now listening on: ...` اللي بتظهر في الـ console، وعدّليه في الفرونت إند لو مختلف).
+هيشتغل على: `http://localhost:5110` (تأكد من الرقم الفعلي في رسالة `Now listening on: ...` اللي بتظهر في الـ console، وعدّليه في الفرونت إند لو مختلف).
 
 يمكنك فتح `http://localhost:5110/openapi/v1.json` أو استخدام Swagger/OpenAPI (في بيئة Development) لاستعراض كل الـ endpoints.
 
@@ -89,7 +89,7 @@ ng serve
 
 هيشتغل على: `http://localhost:4200`
 
-> تأكدي إن الـ `apiUrl` في كل من `src/app/services/track.service.ts` و `src/app/services/auth.service.ts` بيطابق الـ port الفعلي بتاع الـ backend.
+> تأكد إن الـ `apiUrl` في كل من `src/app/services/track.service.ts` و `src/app/services/auth.service.ts` بيطابق الـ port الفعلي بتاع الـ backend.
 
 ---
 
@@ -97,11 +97,11 @@ ng serve
 
 ### من الواجهة (الطريقة الموصى بها)
 
-1. افتحي `http://localhost:4200/login`
-2. سجّلي دخول بالبيانات التالية:
+1. افتح `http://localhost:4200/login`
+2. سجّل دخول بالبيانات التالية:
    - **Username:** `admin`
    - **Password:** `password123`
-3. بعد نجاح الدخول، التوكن بيتخزن تلقائياً ويتضاف لكل الطلبات المحمية (POST/PATCH) عن طريق HTTP Interceptor — مفيش حاجة تانية مطلوبة منك.
+3. بعد نجاح الدخول، التوكن بيتخزن تلقائياً ويتضاف لكل الطلبات المحمية (POST/PATCH) عن طريق HTTP Interceptor .
 4. زرار **تسجيل خروج** بيمسح التوكن ويرجّعك لصفحة الدخول.
 
 ### من Postman / يدوياً
@@ -122,40 +122,8 @@ Content-Type: application/json
 { "token": "eyJhbGciOi..." }
 ```
 
-استخدمي التوكن ده في أي endpoint محمي عن طريق الـ Header:
+استخدم التوكن ده في أي endpoint محمي عن طريق الـ Header:
 
 ```
 Authorization: Bearer <token>
 ```
-
----
-
-## 4. الـ Endpoints المتاحة
-
-| Method | Route                                  | محمي بـ JWT؟ | الوصف                          |
-| ------ | -------------------------------------- | ------------ | ------------------------------ |
-| POST   | `/api/auth/login`                      | لا           | تسجيل الدخول والحصول على توكن  |
-| GET    | `/api/artists`                         | لا           | عرض كل الفنانين                |
-| POST   | `/api/artists`                         | نعم          | إضافة فنان جديد                |
-| GET    | `/api/tracks?artistId=&genre=&status=` | لا           | عرض الأغاني مع فلترة اختيارية  |
-| GET    | `/api/tracks/{id}`                     | لا           | تفاصيل أغنية وحالات توزيعها    |
-| POST   | `/api/tracks`                          | نعم          | إضافة أغنية جديدة              |
-| PATCH  | `/api/tracks/{id}/status`              | نعم          | تحديث حالة الأغنية             |
-| POST   | `/api/tracks/{id}/distribute`          | نعم          | توزيع الأغنية على منصة أو أكثر |
-| GET    | `/api/dsps`                            | لا           | عرض منصات التوزيع المتاحة      |
-
----
-
-## 5. ملاحظات أمنية
-
-راجعي ملف **[DECISIONS.md](./DECISIONS.md)** للاطلاع على القرارات التقنية والأمنية المتخذة أثناء بناء المشروع، بما فيها استخدام أدوات الـ AI.
-
----
-
-## استكشاف الأخطاء الشائعة (Troubleshooting)
-
-| المشكلة                                          | الحل                                                                          |
-| ------------------------------------------------ | ----------------------------------------------------------------------------- |
-| `ERR_CONNECTION_REFUSED` عند تسجيل الدخول        | تأكدي إن الـ backend شغال فعلاً (`dotnet run`) وإن الـ port في `apiUrl` مطابق |
-| خطأ `Duplicate 'Migration' attribute` عند البناء | امسحي مجلد `Migrations` بالكامل وأعيدي إنشاء الـ migration من جديد            |
-| 401 Unauthorized عند الإضافة/التعديل             | تأكدي إنك مسجلة دخول (التوكن منتهي الصلاحية بعد ساعتين)                       |
