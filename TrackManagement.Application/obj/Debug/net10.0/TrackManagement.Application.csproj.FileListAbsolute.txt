@@ -1,0 +1,15 @@
+D:\TrackManagement\TrackManagement.Application\bin\Debug\net10.0\TrackManagement.Application.deps.json
+D:\TrackManagement\TrackManagement.Application\bin\Debug\net10.0\TrackManagement.Application.dll
+D:\TrackManagement\TrackManagement.Application\bin\Debug\net10.0\TrackManagement.Application.pdb
+D:\TrackManagement\TrackManagement.Application\bin\Debug\net10.0\TrackManagement.Domain.dll
+D:\TrackManagement\TrackManagement.Application\bin\Debug\net10.0\TrackManagement.Domain.pdb
+D:\TrackManagement\TrackManagement.Application\obj\Debug\net10.0\TrackManagement.Application.csproj.AssemblyReference.cache
+D:\TrackManagement\TrackManagement.Application\obj\Debug\net10.0\TrackManagement.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\TrackManagement\TrackManagement.Application\obj\Debug\net10.0\TrackManagement.Application.AssemblyInfoInputs.cache
+D:\TrackManagement\TrackManagement.Application\obj\Debug\net10.0\TrackManagement.Application.AssemblyInfo.cs
+D:\TrackManagement\TrackManagement.Application\obj\Debug\net10.0\TrackManagement.Application.csproj.CoreCompileInputs.cache
+D:\TrackManagement\TrackManagement.Application\obj\Debug\net10.0\TrackMan.56B9F8EA.Up2Date
+D:\TrackManagement\TrackManagement.Application\obj\Debug\net10.0\TrackManagement.Application.dll
+D:\TrackManagement\TrackManagement.Application\obj\Debug\net10.0\refint\TrackManagement.Application.dll
+D:\TrackManagement\TrackManagement.Application\obj\Debug\net10.0\TrackManagement.Application.pdb
+D:\TrackManagement\TrackManagement.Application\obj\Debug\net10.0\ref\TrackManagement.Application.dll

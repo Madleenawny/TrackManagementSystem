@@ -1,0 +1,69 @@
+<div class="container my-5">
+  <!-- Header Section -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="fw-bold text-dark mb-1">Track Management</h2>
+      <p class="text-muted small">Manage music tracks, ISRCs, and DSP distributions</p>
+    </div>
+    <button class="btn btn-primary shadow-sm" (click)="onCreateTrack()">
+      + Add New Track
+    </button>
+    <button class="btn btn-outline-danger" (click)="onLogout()">تسجيل خروج</button>
+  </div>
+
+  <!-- Tracks Table Card -->
+  <div class="card border-0 shadow-sm rounded-3">
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="table-light">
+            <tr>
+              <th class="ps-4">Title</th>
+              <th>Artist</th>
+              <th>ISRC</th>
+              <th>Genre</th>
+              <th>Release Date</th>
+              <th>Status</th>
+              <th class="text-end pe-4">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (track of tracks(); track track.id) {
+            <tr>
+              <td class="ps-4 fw-semibold text-primary">{{ track.title }}</td>
+              <td>{{ track.artistName }}</td>
+              <td><code class="text-dark">{{ track.isrc }}</code></td>
+              <td>
+                <span class="badge bg-secondary-subtle text-secondary border">
+                  {{ track.genre || 'N/A' }}
+                </span>
+              </td>
+              <td>{{ track.releaseDate | date:'mediumDate' }}</td>
+              <td>
+                  <span class="badge" [ngClass]="{
+                      'bg-success': track.status === 'Distributed',
+                      'bg-warning text-dark': track.status === 'Submitted',
+                      'bg-secondary': track.status === 'Draft'
+                    }">
+                    {{ track.status }}
+                  </span>
+              </td>
+              <td class="text-end pe-4">
+                <button class="btn btn-sm btn-outline-info shadow-sm" [routerLink]="['/tracks', track.id]">
+                  Details
+                </button>
+              </td>
+            </tr>
+            } @empty {
+            <tr>
+              <td colspan="7" class="text-center py-5 text-muted">
+                No tracks found. Try adding a new track.
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

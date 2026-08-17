@@ -1,0 +1,124 @@
+<div class="page-container">
+  <!-- Back Button -->
+  <a routerLink="/tracks" class="back-btn">
+    <span class="icon">←</span> العودة للقائمة الرئيسية
+  </a>
+
+  <!-- 1. State: Loading -->
+  @if (loading) {
+    <div class="state-card loading-card">
+      <div class="spinner"></div>
+      <p>جاري تحميل بيانات الأغنية...</p>
+    </div>
+  }
+
+  <!-- 2. State: Error -->
+  @if (!loading && errorMessage && !track) {
+    <div class="state-card error-card">
+      <p>⚠️ {{ errorMessage }}</p>
+    </div>
+  }
+
+  <!-- 3. State: Content -->
+  @if (!loading && track) {
+    <div class="content-grid">
+
+      <!-- Header Card / Track Details -->
+      <div class="card hero-card">
+        <div class="hero-header">
+          <div class="music-icon">🎵</div>
+          <div>
+            <span class="badge status-badge" [ngClass]="track.status?.toLowerCase()">
+              {{ track.status }}
+            </span>
+            <h1 class="track-title">{{ track.title }}</h1>
+            <p class="artist-name">by {{ track.artistName }}</p>
+          </div>
+        </div>
+
+        <div class="details-grid">
+          <div class="detail-item">
+            <span class="label">ISRC Code</span>
+            <span class="value code">{{ track.isrc }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Genre</span>
+            <span class="value">{{ track.genre }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Distribute Form Card -->
+      <div class="card distribute-card">
+        <h3>🚀 Distribute to DSP</h3>
+        <p class="subtitle">قم بتوزيع هذا التراك على منصات الاستماع المختلفة</p>
+
+        @if (errorMessage) {
+          <div class="alert error-alert">{{ errorMessage }}</div>
+        }
+        @if (successMessage) {
+          <div class="alert success-alert">{{ successMessage }}</div>
+        }
+
+        <form class="form-group" (ngSubmit)="$event.preventDefault()">
+          <div class="input-field">
+            <label>Select DSP Platform</label>
+            <select [(ngModel)]="selectedDspId" name="selectedDspId">
+              <option [ngValue]="undefined">-- اختر المنصة --</option>
+              @for (dsp of dsps; track dsp.id) {
+                <option [value]="dsp.id">{{ dsp.name }}</option>
+              }
+            </select>
+          </div>
+          <button (click)="onDistribute()" class="btn-submit">
+            <span>Publish Track</span> 🚀
+          </button>
+        </form>
+      </div>
+
+      <!-- Distribution History Card -->
+      <div class="card history-card full-width">
+        <div class="card-header">
+          <h3>📡 Distribution History</h3>
+          @if (track.distributions) {
+            <span class="count-badge">{{ track.distributions.length }} Platforms</span>
+          }
+        </div>
+
+        <div class="table-responsive">
+          <table class="modern-table">
+            <thead>
+              <tr>
+                <th>DSP Name</th>
+                <th>Submitted At</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (dist of track.distributions; track dist.id) {
+                <tr>
+                  <td class="font-weight-bold">
+                    <span class="dsp-badge">{{ dist.dspName }}</span>
+                  </td>
+                  <td>{{ dist.submittedAt | date:'medium' }}</td>
+                  <td>
+                    <span class="badge" [ngClass]="dist.status?.toLowerCase()">
+                      {{ dist.status }}
+                    </span>
+                  </td>
+                </tr>
+              } @empty {
+                <tr>
+                  <td colspan="3" class="empty-state">
+                    لم يتم توزيع هذه الأغنية على أي منصة بعد.
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  }
+</div>

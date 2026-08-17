@@ -1,0 +1,23 @@
+<div class="login-container">
+  <div class="login-card">
+    <h2>تسجيل الدخول</h2>
+
+    @if (errorMessage) {
+      <div class="alert error-alert">{{ errorMessage }}</div>
+    }
+
+    <div class="input-field">
+      <label>Username</label>
+      <input type="text" [(ngModel)]="username" name="username" placeholder="admin" />
+    </div>
+
+    <div class="input-field">
+      <label>Password</label>
+      <input type="password" [(ngModel)]="password" name="password" />
+    </div>
+
+    <button (click)="onLogin()" [disabled]="loading" class="btn-submit">
+      {{ loading ? 'جاري الدخول...' : 'دخول' }}
+    </button>
+  </div>
+</div>

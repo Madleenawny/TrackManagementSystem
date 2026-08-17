@@ -1,0 +1,11 @@
+D:\TrackManagement\TrackManagement.Domain\bin\Debug\net10.0\TrackManagement.Domain.deps.json
+D:\TrackManagement\TrackManagement.Domain\bin\Debug\net10.0\TrackManagement.Domain.dll
+D:\TrackManagement\TrackManagement.Domain\bin\Debug\net10.0\TrackManagement.Domain.pdb
+D:\TrackManagement\TrackManagement.Domain\obj\Debug\net10.0\TrackManagement.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\TrackManagement\TrackManagement.Domain\obj\Debug\net10.0\TrackManagement.Domain.AssemblyInfoInputs.cache
+D:\TrackManagement\TrackManagement.Domain\obj\Debug\net10.0\TrackManagement.Domain.AssemblyInfo.cs
+D:\TrackManagement\TrackManagement.Domain\obj\Debug\net10.0\TrackManagement.Domain.csproj.CoreCompileInputs.cache
+D:\TrackManagement\TrackManagement.Domain\obj\Debug\net10.0\TrackManagement.Domain.dll
+D:\TrackManagement\TrackManagement.Domain\obj\Debug\net10.0\refint\TrackManagement.Domain.dll
+D:\TrackManagement\TrackManagement.Domain\obj\Debug\net10.0\TrackManagement.Domain.pdb
+D:\TrackManagement\TrackManagement.Domain\obj\Debug\net10.0\ref\TrackManagement.Domain.dll

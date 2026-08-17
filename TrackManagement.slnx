@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="TrackManagement.API/TrackManagement.API.csproj" />
+  <Project Path="TrackManagement.Application/TrackManagement.Application.csproj" />
+  <Project Path="TrackManagement.Domain/TrackManagement.Domain.csproj" />
+  <Project Path="TrackManagement.Infrastructure/TrackManagement.Infrastructure.csproj" />
+</Solution>
